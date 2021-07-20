@@ -8,20 +8,15 @@ import { Recipe } from './recipe.model';
   providedIn: 'root'
 })
 export class RecipeService {
-  recipeSelected = new Subject<Recipe>();
-  private recipes: Recipe[] = [
-    new Recipe("A Test Recipe", "this is a simple", "https://realfood.tesco.com/media/images/RFO-1400x919--d723b77b-8b5a-4803-8f9e-62d363bc69f9-0-1400x919.jpg",[
-      new Ingredient("Meat",1),
-      new Ingredient("French Fries",20)
-    ]),
-    new Recipe("A New Recipe", "this is a easy", "https://realfood.tesco.com/media/images/RFO-1400x919--d723b77b-8b5a-4803-8f9e-62d363bc69f9-0-1400x919.jpg",
-    [
-      new Ingredient("Buns",2),
-      new Ingredient("Meat",1)
-    ]),
-  ];
+  recipeChanged = new Subject<Recipe[]>();
+  private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) { }
+
+  setRecipes(recipes: Recipe[]){
+    this.recipes = recipes;
+    this.recipeChanged.next(this.recipes.slice());
+  }
 
   getRecipes(){
     return this.recipes.slice();
@@ -33,6 +28,21 @@ export class RecipeService {
 
   addIngredientToCart(ingredients: Ingredient[]){
       this.shoppingListService.addIngredients(ingredients);
+  }
+
+  deleteRecipe(index: number){
+    this.recipes.splice(index,1);
+    this.recipeChanged.next(this.recipes.slice());
+  }
+
+  addRecipe(recipe: Recipe){
+    this.recipes.push(recipe);
+    this.recipeChanged.next(this.recipes.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe){
+      this.recipes[index] = newRecipe;
+      this.recipeChanged.next(this.recipes.slice());
   }
 
 }

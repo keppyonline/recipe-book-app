@@ -22,7 +22,7 @@ export class ShoppingListService {
     this.ingredientChanged.next(this.ingredients.slice());
   }
   addIngredients(ingredients: Ingredient[]){
-    this.ingredients.push(...ingredients);
+    this.ingredients.push(...ingredients);// push not supported collection hence spreading(...) and passing
     this.ingredientChanged.next(this.ingredients.slice())
 ;  }
     updateIngredient(index: number, newIngredient: Ingredient){
