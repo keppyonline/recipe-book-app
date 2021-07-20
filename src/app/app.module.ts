@@ -18,7 +18,13 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
 import { RecipeResolverService } from './recipes/recipe-resolver.service';
-import { AuthComponent } from './auth/auth.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { LoginButtonComponent } from './login-button/login-button.component';
+import { SignupButtonComponent } from './signup-button/signup-button.component';
+import { LogoutButtonComponent } from './logout-button/logout-button.component';
+import { AuthenticationButtonComponent } from './authentication-button/authentication-button.component';
+import { AuthNavComponent } from './auth-nav/auth-nav.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +39,21 @@ import { AuthComponent } from './auth/auth.component';
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
-    AuthComponent
+    LoginButtonComponent,
+    SignupButtonComponent,
+    LogoutButtonComponent,
+    AuthenticationButtonComponent,
+    AuthNavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot({
+      ...env.auth,
+    }),
   ],
   providers: [RecipeService, ShoppingListService, RecipeResolverService],
   bootstrap: [AppComponent]

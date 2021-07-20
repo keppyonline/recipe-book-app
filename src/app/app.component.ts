@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'recipe-book-app';
   loadedFeature= 'recipe';
+  constructor(public auth: AuthService){
+    
+  }
   onNavigate(feature:string){
-this.loadedFeature = feature;
+      this.loadedFeature = feature;
   }
 }

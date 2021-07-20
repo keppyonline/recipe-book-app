@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+<nav class="navbar navbar-light navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
     <a class="navbar-brand" routerLink="/" style="cursor: pointer;">Recipe Book</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -6,7 +7,6 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/recipes">Recipes</a></li>
-        <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/auth">Authenticate</a></li>
         <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="/shopping-list">Shopping List</a></li>
         <li class="nav-item dropdown" appDropdown>
           <a class="nav-link dropdown-toggle" style="cursor: pointer;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -18,5 +18,16 @@
           </div>
         </li>
       </ul>
-    </div>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav mr-auto" style="float: right !important;">
+          <li class="nav-item dropdown" appDropdown>
+            <a class="nav-link dropdown-toggle" style="cursor: pointer;" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Auth0
+            </a>
+            <app-auth-nav></app-auth-nav> 
+          </li>
+        </ul>
+      </div>
+    </div>  
   </nav>
+</div>
